@@ -1,8 +1,16 @@
 # zsh-filedb!
 Quickfast access to configuration files and logs \o/
 
+## Features
 
-## DESCRIPTION
+![An image says, um, like... a lot of words!](http://ompldr.org/vY2htcQ)
+
+* Filename agnostic file database: Just saying *nginx* is enough!
+* Automatic sudo if insufficient permissions.
+* Awareness of global and local configuration files (/etc/my.cnf vs ~/.my.cnf)
+* Blissful tab completion!
+
+## Description
 
 zsh-filedb is a small set of utilities designed to give the user speedier
 access to configuration files and logs!
@@ -28,7 +36,7 @@ The same thing, really, except there is currently only support for global logs
 (the ones in /var/log/).
 
 
-## USAGE
+## Usage
 
 c \[CONFIG\] \[global|local\] -- Edit configuration files.
 
@@ -37,7 +45,7 @@ l \[LOG\] \[tail|page|edit\]
 filedb \[add|commit\]
 
 
-## INSTALLATION
+## Installation
 
 1. Clone this repository
 2. Put **source /path/to/filedb.zsh** somewhere in your .zshrc
@@ -52,16 +60,16 @@ tools have been added to the **filedb** command.
 Think of the warm and fuzzy feeling you'll get when you've contributed! :heart:
 
 
-## AUTHOR
+## Author
 
   Lowe Thiderman (lowe.thiderman@gmail.com)
 
-## CONTRIBUTORS
+## Contributors
 
 [Erik Honn][0] - Inspiring me to start this project
 
 
-## COPYRIGHT
+## Copyright
 
 Copyright 2012 the **zsh-filedb** AUTHOR and CONTRIBUTORS as listed above.
 
