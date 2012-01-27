@@ -1,17 +1,17 @@
 # zsh-filedb!
-## Quickfast access to configuration files and logs \o/
+Quickfast access to configuration files and logs \o/
 
 
-# DESCRIPTION
+## DESCRIPTION
 
 zsh-filedb is a small set of utilities designed to give the user speedier
-access to configuration files and logs.
+access to configuration files and logs!
 
 ### Configs
 Instead of wondering whether the main apache config file is
 /etc/apache2/apache2.conf or /etc/httpd/httpd.conf or
 /etc/apache/conf.d/apache.conf you can just type **c apache** and filedb will
-find the right one for you. Of course, you can just type **c ap<tab>** since
+find the right one for you. Of course, you can just type **c ap\<tab\>** since
 zsh will complete it for you (unless you don't have apache installed, in which
 case you won't be bothered with it).
 Oh, and you don't need to prefix anything with sudo, the script will do that
@@ -28,20 +28,22 @@ The same thing, really, except there is currently only support for global logs
 (the ones in /var/log/).
 
 
-# USAGE
+## USAGE
 
 c \[CONFIG\] \[global|local\] -- Edit configuration files.
+
 l \[LOG\] \[tail|page|edit\]
+
 filedb \[add|commit\]
 
 
-# INSTALLATION
+## INSTALLATION
 
 1. Clone this repository
 2. Put **source /path/to/filedb.zsh** somewhere in your .zshrc
 
 
-# PLZ HELP!
+## PLZ HELP!
 
 A project such as this is never really useful unless others can contribute with
 more files than the ones I have. To make this as easy as possible, some extra
@@ -50,19 +52,18 @@ tools have been added to the **filedb** command.
 Think of the warm and fuzzy feeling you'll get when you've contributed! :heart:
 
 
-# AUTHOR
+## AUTHOR
 
-[Lowe Thiderman][1]
-lowe.thiderman@gmail.com
+  Lowe Thiderman (lowe.thiderman@gmail.com)
 
-# CONTRIBUTORS
+## CONTRIBUTORS
 
 [Erik Honn][0] - Inspiring me to start this project
 
 
-# COPYRIGHT
+## COPYRIGHT
 
 Copyright 2012 the **zsh-filedb** AUTHOR and CONTRIBUTORS as listed above.
 
 [0]: https://github.com/Honn
-[1]: https://github.com/daethorian
+
