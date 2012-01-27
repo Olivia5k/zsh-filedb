@@ -5,36 +5,11 @@ Quickfast access to configuration files and logs \o/
 
 ![An image says, um, like... a lot of words!](http://ompldr.org/vY2htcQ)
 
-* Filename agnostic file database: Just saying *nginx* is enough!
+* Filename agnostic file database: Just saying *nginx* is enough! You don't need to care whether it is */etc/nginx/nginx.conf* or */etc/nginx/conf.d/nginx.conf*. The script will find out for you!
 * Automatic sudo if insufficient permissions.
-* Awareness of global and local configuration files (/etc/my.cnf vs ~/.my.cnf)
-* Blissful tab completion!
-
-## Description
-
-zsh-filedb is a small set of utilities designed to give the user speedier
-access to configuration files and logs!
-
-### Configs
-Instead of wondering whether the main apache config file is
-/etc/apache2/apache2.conf or /etc/httpd/httpd.conf or
-/etc/apache/conf.d/apache.conf you can just type **c apache** and filedb will
-find the right one for you. Of course, you can just type **c ap\<tab\>** since
-zsh will complete it for you (unless you don't have apache installed, in which
-case you won't be bothered with it).
-Oh, and you don't need to prefix anything with sudo, the script will do that
-for you should you not have the necessary permissions.
-
-The script distinguishes two form of configurations:
- * Global configurations:
-   System wide configuration files. Almost all of them found in /etc
- * Local configurations:
-   User files, found somewhere in the depths of $HOME.
-
-### Logs
-The same thing, really, except there is currently only support for global logs
-(the ones in /var/log/).
-
+* Awareness of global and local configuration files (*/etc/my.cnf* vs *~/.my.cnf*).
+* Blissful tab completion! The completion only lists configs actually present on your system.
+* Easy contributing! See the **PLZ HELP!** section further down for great justice!
 
 ## Usage
 
