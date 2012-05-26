@@ -20,7 +20,7 @@ source $FILEDB
 
 export FILEDB_DIRTY=""
 
-function c()
+function config()
 {
     local target f_global f_local fg lg
 
@@ -97,6 +97,7 @@ function c()
         edit $target
     fi
 }
+alias c="config"
 
 function _confcomplete()
 {
@@ -121,9 +122,9 @@ function _confcomplete()
     fi
 }
 
-compctl -Y "%B%F{blue}conf%f%b" -K _confcomplete c
+compctl -Y "%B%F{blue}conf%f%b" -K _confcomplete config
 
-function l()
+function logfile()
 {
     local target
 
@@ -148,6 +149,7 @@ function l()
         page --tail $target
     fi
 }
+alias l="logfile"
 
 function _logcomplete()
 {
@@ -164,7 +166,7 @@ function _logcomplete()
     fi
 }
 
-compctl -Y "%B%F{blue}log%f%b" -K _logcomplete l
+compctl -Y "%B%F{blue}log%f%b" -K _logcomplete logfile
 
 # Smartypants sudo wrapper!
 function edit()
@@ -178,7 +180,7 @@ function edit()
             # possible.
             files+=($a:A)
 
-            if ! [[ -w "$a" ]]; then
+            if [[ ! -w "$a" ]]; then
                 print -Pn "%B%F{yellow}${a}%f%b not writable by "
                 print -P  "%B%F{green}${USER}%f%b; going sudo"
 
@@ -194,6 +196,7 @@ function edit()
 
     ${(z)editor} $args $files
 }
+alias e="edit"
 
 eval "alias $EDITOR=edit"
 
