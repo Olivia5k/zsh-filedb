@@ -1,4 +1,4 @@
-function logfile()
+function _zsys-log()
 {
     local target
 
@@ -23,21 +23,4 @@ function logfile()
         page --tail $target
     fi
 }
-alias l="logfile"
-
-function _logcomplete()
-{
-    if (( CURRENT == 2 )) ; then
-        for s in ${(k)LOG_GLOBAL}; do
-            for f in ${(s: :)LOG_GLOBAL[$s]}; do
-                if [[ -f $f ]]; then
-                    reply+=($s)
-                fi
-            done
-        done
-    else
-        reply=(edit page tail)
-    fi
-}
-
-compctl -Y "%B%F{blue}log%f%b" -K _logcomplete logfile
+alias l="zsys log"

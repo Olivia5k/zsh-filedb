@@ -1,4 +1,4 @@
-function config()
+function _zsys-config()
 {
     local target f_global f_local fg lg
 
@@ -75,29 +75,4 @@ function config()
         edit $target
     fi
 }
-alias c="config"
-
-function _confcomplete()
-{
-    if (( CURRENT == 2 )) ; then
-        for s in ${(k)CONF_GLOBAL}; do
-            for f in ${(s: :)CONF_GLOBAL[$s]}; do
-                if [[ -f $f ]]; then
-                    reply+=($s)
-                fi
-            done
-        done
-
-        for s in ${(k)CONF_LOCAL}; do
-            for f in ${(s: :)CONF_LOCAL[$s]}; do
-                if [[ -f $f ]]; then
-                    reply+=($s)
-                fi
-            done
-        done
-    else
-        reply=(global local)
-    fi
-}
-
-compctl -Y "%B%F{blue}conf%f%b" -K _confcomplete config
+alias c="zsys config"

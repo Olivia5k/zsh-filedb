@@ -4,7 +4,7 @@
 # https://github.com/daethorian/zsh-sysadmin.git
 #
 # Written by Lowe Thiderman (lowe.thiderman@gmail.com)
-# Licensed under the GPLv2.
+# Licensed under the MIT license.
 #
 # See the README for usage instructions.
 
@@ -26,18 +26,31 @@ unset f
 function zsys()
 {
     if [[ "$1" != "commit" ]] && [[ -n "$FILEDB_DIRTY" ]]; then
-        echo "You have changes to your filedb database."
+        echo "You have changes to your zsys file database."
         print -P "Do a %B%F{cyan}zsys commit%f%b when you feel you're done!"
     fi
 
-    if [[ "$1" = "add" ]]; then
-        shift
-        _filedb_add $*
-        return $?
-    elif [[ "$1" = "commit" ]]; then
-        _filedb_commit
-        return $?
-    fi
-}
+    case $1 in
+        add)
+            shift
+            _filedb_add $*
+            return $?
+        ;;
+        commit)
+            _filedb_commit
+            return $?
+        ;;
 
-compctl -Y "%B%F{blue}command%f%b" -k "(add commit)" zsys
+        config)
+            shift
+            _zsys-config $*
+            return $?
+        ;;
+
+        "log")
+            shift
+            _zsys-log $*
+            return $?
+        ;;
+    esac
+}
