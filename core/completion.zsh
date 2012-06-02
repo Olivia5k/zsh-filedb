@@ -33,7 +33,7 @@ function __zsys-log()
      _describe 'log files' reply
 }
 
-_zsys()
+function _zsys()
 {
     if (( CURRENT == 2 )); then
         _values 'core command' \
@@ -54,6 +54,15 @@ _zsys()
             ;;
         esac
     fi
+
+    case $words[2] in
+        config)
+            _zsys-parse_config_filearg
+        ;;
+        "log")
+            _arguments '*:log files:__zsys-log' && return
+        ;;
+    esac
 }
 
 compdef _zsys zsys

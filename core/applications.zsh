@@ -11,7 +11,7 @@ function edit()
             files+=($a:A)
 
             if [[ ! -w "$a" ]]; then
-                print -Pn "%B%F{yellow}${a}%f%b not writable by "
+                print -Pn "%B%F{yellow}${a:a}%f%b not writable by "
                 print -P  "%B%F{green}${USER}%f%b; going sudo"
 
                 # Only once should be enough.
