@@ -116,7 +116,7 @@ function _zsys-parse_config_path() {
     if [[ -n "$arr[$1]" ]]; then
         for cp in ${(s: :)arr[$1]}; do
             if [[ -d $cp ]]; then
-                conf_path=$cp
+                conf_path=$cp:A
                 break
             fi
         done
@@ -125,7 +125,16 @@ function _zsys-parse_config_path() {
     else
         _zsys-parse_config $1
         eval "f=\$conf_$2"
-        conf_path=$f:h
+        conf_path=$f:A:h
+
+        # Check if the selected dir is one of the ignored ones
+        for id in ${(s: :)CONF_IGNORE_DIR}; do
+            if [[ "$conf_path" = "$id" ]]; then
+                conf_path=""
+                break
+            fi
+        done
+
     fi
 }
 
