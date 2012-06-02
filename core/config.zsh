@@ -1,5 +1,5 @@
 function _zsys-config() {
-    typeset -a args
+    typeset -a args orig_args
     local target f_global f_local fg lg kind
 
     if [[ -z "$1" ]]; then
@@ -15,16 +15,24 @@ function _zsys-config() {
         shift
     fi
 
-    args=($*)
-    if [[ ${#args} != 0 ]] ; then
+    orig_args=($*)
+    if [[ ${#orig_args} != 0 ]] ; then
         if [[ -z "$kind" ]]; then
             _zsys-parse_config $conf
         fi
         _zsys-parse_config_path $conf $kind
+        for a in $orig_args; do
+            f="$conf_path/$a"
+            f=$f:A
 
-        cd -q $conf_path &> /dev/null
-        edit $args
-        cd -q - &> /dev/null
+            if [[ -f "$f" ]]; then
+                args+=($f)
+            else
+                args+=($a)
+            fi
+        done
+
+        edit $files
         return
     fi
 

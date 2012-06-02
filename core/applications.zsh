@@ -10,21 +10,21 @@ function edit()
             # possible.
             files+=($a:A)
 
-            if [[ ! -w "$a" ]]; then
+            if [[ ! -w "$a" ]] && ! [[ $editor =~ "^sudo " ]]; then
                 print -Pn "%B%F{yellow}${a:a}%f%b not writable by "
                 print -P  "%B%F{green}${USER}%f%b; going sudo"
 
-                # Only once should be enough.
-                if ! [[ $editor =~ "^sudo " ]]; then
-                    editor="sudo $editor"
-                fi
+                editor="sudo $editor"
             fi
         else
             args+=($a)
         fi
     done
 
+    # Before editing, cd to the parent directory of the first file given
+    cd -q ${files[1]:h} &> /dev/null
     ${(z)editor} $args $files
+    cd -q - &> /dev/null
 }
 alias e="edit"
 
