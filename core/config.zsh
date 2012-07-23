@@ -32,7 +32,7 @@ function _zsys-config() {
             fi
         done
 
-        edit $files
+        edit $args
         return
     fi
 
