@@ -2,34 +2,38 @@ export FILEDB_DIRTY=""
 
 function _filedb_add()
 {
+    typeset -a args
     local cat name file orig target
 
-    if [[ -z "$1" ]] || [[ -z "$2" ]] || [[ -z "$3" ]]; then
-        echo "Usage: zsys add <category> <name> <file path>"
+    args=($*)
+    if [[ ${#args} != 4 ]] ; then
+        echo "Usage: zsys add <cat> <kind> <name> <file path>"
         return 1
     fi
 
     cat=$1
-    name="[$2]"
-    file=$3:a  # Use aboslute file names
+    kind=$2
+    section="${(U)cat}_${(U)kind}"
+    name="[$3]"
+    file=$4:a  # Use aboslute file names
+
+    if ! [[ "$section" =~ "(CONF|LOG)_(GLOBAL|LOCAL)" ]]; then
+        echo "Error: $section is not a valid filedb section."
+        return 3
+    fi
 
     if [[ ! -f "$file" ]]; then
         echo "Error: $file is not a valid file."
         return 2
     fi
 
-    if ! [[ "$cat" =~ "CONF_(GLOBAL|LOCAL)" ]]; then
-        echo "Error: $cat is not a valid filedb category."
-        return 3
-    fi
-
     # To dynamically get the needed map, eval it in
-    eval "orig=\"\$${cat}${name}\""
+    eval "orig=\"\$${section}${name}\""
 
     if [[ -n "$orig" ]]; then
         for f in ${(s: :)orig}; do
             if [[ "$f" = "$file" ]]; then
-                echo "Error: $file is already in ${cat}${name}"
+                echo "Error: $file is already in ${section}${name}"
                 return 4
             fi
         done
@@ -39,8 +43,8 @@ function _filedb_add()
         target="$file"
     fi
 
-    eval "${cat}${name}=\"$target\""
-    print -P "%B${file}%b added to %B${cat}${name}%b"
+    eval "${section}${name}=\"$target\""
+    print -P "%B${file}%b added to %B${section}${name}%b"
 
     export FILEDB_DIRTY=";)"
 }
