@@ -38,7 +38,8 @@ function _zsys()
     if (( CURRENT == 2 )); then
         _values 'core command' \
             'config[edit configuration files]' \
-            'log[tail log files]' \
+            'log[read log files]' \
+            'tail[tail log files]' \
             'add[add conf/log files to local file db]' \
             'commit[commit unsaved changes to local file db]' \
             && return
@@ -49,7 +50,7 @@ function _zsys()
             config)
                 _arguments '*:cfg files:__zsys-config' && return
             ;;
-            "log")
+            "log" | "tail")
                 _arguments '*:log files:__zsys-log' && return
             ;;
         esac
@@ -59,7 +60,7 @@ function _zsys()
         config)
             _zsys-parse_config_filearg
         ;;
-        "log")
+        "log" | "tail")
             _arguments '*:log files:__zsys-log' && return
         ;;
     esac

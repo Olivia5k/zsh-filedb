@@ -1,9 +1,12 @@
 function _zsys-log()
 {
-    local target
+    local target cmd
+
+    cmd=$1
+    shift
 
     if [[ -z "$1" ]]; then
-        echo "No."
+        echo "helpful help is helpful"
         return 1
     fi
 
@@ -14,13 +17,8 @@ function _zsys-log()
         fi
     done
 
-    # By default, tail the file, unless arguments were given
-    if [[ "$2" = "page" ]]; then
-        page $target
-    elif [[ "$2" = "edit" ]]; then
-        edit $target
-    else
-        page --tail $target
-    fi
+    zsys-${cmd} $target
 }
+
 alias l="zsys log"
+alias t="zsys tail"

@@ -25,12 +25,13 @@ unset f
 
 function zsys()
 {
-    if [[ "$1" != "commit" ]] && [[ -n "$FILEDB_DIRTY" ]]; then
+    local action=$1
+    if [[ "$action" != "commit" ]] && [[ -n "$FILEDB_DIRTY" ]]; then
         echo "You have changes to your zsys file database."
         print -P "Do a %B%F{cyan}zsys commit%f%b when you feel you're done!"
     fi
 
-    case $1 in
+    case $action in
         add)
             shift
             _filedb_add $*
@@ -47,9 +48,9 @@ function zsys()
             return $?
         ;;
 
-        "log")
+        "log" | "tail")
             shift
-            _zsys-log $*
+            _zsys-log $action $*
             return $?
         ;;
     esac
