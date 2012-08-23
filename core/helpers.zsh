@@ -13,8 +13,8 @@ function _zsys-execute()
             # possible.
             files+=($a:A)
 
-            if [[ "$action" = "write" ]] && [[ ! -w "$a" ]] || \
-                [[ "$action" = "read" ]] && [[ ! -r "$a" ]]; then
+            if ([[ "$action" = "write" ]] && [[ ! -w "$a" ]]) || \
+                ([[ "$action" = "read" ]] && [[ ! -r "$a" ]]); then
                 if ! [[ $cmd =~ "^sudo " ]] ; then
                     if [[ "$2" = "write" ]]; then
                         verb="writable"

@@ -32,7 +32,7 @@ function _zsys-config() {
             fi
         done
 
-        edit $args
+        zsys-edit $args
         return
     fi
 
@@ -86,7 +86,7 @@ function _zsys-config() {
         fi
     fi
 
-    edit $target
+    zsys-edit $target
 }
 
 function _zsys-parse_config() {
