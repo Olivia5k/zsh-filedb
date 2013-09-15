@@ -20,5 +20,5 @@ function _zsys-log()
     zsys-${cmd} $target
 }
 
-alias l="zsys log"
-alias t="zsys tail"
+#alias l="zsys log"
+#alias t="zsys tail"
